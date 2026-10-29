@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "compilerVersion": "Kremen 0.4.6 (native C11)",
+  "compilerCommit": "671140cd1ef4ea453a07047df07c945efa7184e2",
+  "platform": "Linux",
+  "verifiedAt": "2026-10-29T10:26:51.444364+00:00",
+  "lessons": [
+    {
+      "lessonId": "01-first-program",
+      "starterCheck": "passed",
+      "example": "passed",
+      "solutionTests": 1,
+      "status": "passed"
+    },
+    {
+      "lessonId": "02-variables",
+      "starterCheck": "passed",
+      "example": "passed",
+      "solutionTests": 1,
+      "status": "passed"
+    },
+    {
+      "lessonId": "03-expressions",
+      "starterCheck": "passed",
+      "example": "passed",
+      "solutionTests": 1,
+      "status": "passed"
+    },
+    {
+      "lessonId": "04-conditions",
+      "starterCheck": "passed",
+      "example": "passed",
+      "solutionTests": 1,
+      "status": "passed"
+    },
+    {
+      "lessonId": "05-loops",
+      "starterCheck": "passed",
+      "example": "passed",
+      "solutionTests": 1,
+      "status": "passed"
+    },
+    {
+      "lessonId": "06-functions",
+      "starterCheck": "passed",
+      "example": "passed",
+      "solutionTests": 1,
+      "status": "passed"
+    },
+    {
+      "lessonId": "07-arrays",
+      "starterCheck": "passed",
+      "example": "passed",
+      "solutionTests": 1,
+      "status": "passed"
+    },
+    {
+      "lessonId": "08-structs-methods",
+      "starterCheck": "passed",
+      "example": "passed",
+      "solutionTests": 1,
+      "status": "passed"
+    },
+    {
+      "lessonId": "09-results",
+      "starterCheck": "passed",
+      "example": "passed",
+      "solutionTests": 1,
+      "status": "passed"
+    },
+    {
+      "lessonId": "10-enums-match",
+      "starterCheck": "passed",
+      "example": "passed",
+      "solutionTests": 1,
+      "status": "passed"
+    },
+    {
+      "lessonId": "11-input-output",
+      "starterCheck": "passed",
+      "example": "passed",
+      "solutionTests": 5,
+      "status": "passed"
+    },
+    {
+      "lessonId": "12-defer-resources",
+      "starterCheck": "passed",
+      "example": "passed",
+      "solutionTests": 1,
+      "status": "passed"
+    }
+  ],
+  "totals": {
+    "lessons": 12,
+    "examples": 12,
+    "starterChecks": 12,
+    "solutionTests": 16
+  }
+}

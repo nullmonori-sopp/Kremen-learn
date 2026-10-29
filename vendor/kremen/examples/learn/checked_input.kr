@@ -1,0 +1,31 @@
+package main
+func readPositiveCount()!i64 {
+	var count = readIntResult()?
+	if count <= 0 {
+		return fail(1001)
+	}
+	return ok(count)
+}
+func main() {
+	var input = readPositiveCount()
+	match input {
+		ok(count) => {
+			println(100 / count)
+		}
+		fail(code) => {
+			if code == 1001 {
+				println("Count must be greater than zero.")
+			} else if code == 1 {
+				println("Cannot read count: end of input.")
+			} else if code == 2 {
+				println("Cannot read count: expected an integer.")
+			} else if code == 3 {
+				println("Cannot read count: integer is outside the i64 range.")
+			} else if code == 4 {
+				println("Cannot read count: input stream failed.")
+			} else {
+				println("Cannot read count: unknown input error", code)
+			}
+		}
+	}
+}

@@ -1,0 +1,103 @@
+# Validation record for 0.4.6
+
+Release environment: Linux x86-64, GCC 14.2.0, POSIX shell. Clang is not installed in this environment. Compiler and generated C use `-std=c11 -Wall -Wextra -Wpedantic -Werror`; full-language generated programs additionally use `-pthread`. Defaults are `-O3`, with `-O2` for the initial bootstrap stages.
+
+The current suites cover 836 checks on the release environment: the 741 checks from 0.4.5, plus 23 checker, 34 codegen, 16 input, 14 native-output, and 8 runtime-output cases. Negative cases must return the intended diagnostic, not terminate through a signal. Installer checks, bootstrap fixed points, and sanitizer runs are additional validation described below. Full-device tests use Linux `/dev/full` and explicitly skip those cases when it is unavailable, so other hosts can report a smaller count.
+
+## Commands to reproduce
+
+```sh
+make test
+make test-sanitize
+make test-thread-sanitize
+make test-install
+make examples
+```
+
+A clean subset build verifies the committed seed against stages 1, 2, and 3, runs the `720|18|ok` example, and checks four initial malformed-input cases. Driver self-rebuild compares next-stage C for both compiler and command line before publication.
+
+| Suite | Checks | Main coverage |
+| --- | ---: | --- |
+| `tests/native/run.sh` | 58 | Types, methods, arrays, references, results, slices, imports, formatting, I/O, output preservation |
+| `tests/native/v3.sh` | 29 | Defer/catch, arenas, filesystem, enums/matching, tuples |
+| `tests/native/frontend_stability.sh` | 13 | Comment boundaries, format behavior/idempotence, token/depth limits, Unicode, malformed input |
+| `tests/native/semantic_stability.sh` | 15 | Catch loan boundaries and read-only raw-pointer provenance |
+| `tests/native/runtime_stability.sh` | 22 | Arithmetic, file/input capacities, read limits, arenas, LIFO cleanup |
+| `tests/native/toolchain_stability.sh` | 16 | Executable discovery, PATH/links, dynamic argv, allocation budgets, CLI, output protection, quoted-path C-only builds |
+| `tests/native/diagnostics.sh` | 13 | Underlines, tabs/UTF-8, column 6000+, EOF, related locations, missing files, imported/moved runtime reports, deferred failure, strict standalone C |
+| `tests/native/diagnostics_043.sh` | 14 | Source context, JSON validity/ranges/escaping, related locations, import origins, NUL positions, EOF, and CLI rendering |
+| `tests/native/checker_codegen_043.sh` | 38 | Preserved effects/checks, host C layouts, structural type reuse, typo hints, thread signatures, handle boundaries, and imported workers |
+| `tests/native/stabilization_044.sh` | 29 | Offline catalog coverage, structured command/formatter/output errors, exact type ranges, imported/nested/borrowed method inference, and formatting boundaries |
+| `tests/native/profiles_045.sh` | 41 | All five learning rules, aggregate result discards, common borrowing/runtime checks, profile precedence, byte-identical C, error handling, and output preservation |
+| `tests/native/security_045.sh` | 25 | Long method/defer chains, canonical source/header/entry boundaries, symlinks, control-safe paths/messages/excerpts, bounded text, and runtime cleanup |
+| `tests/native/malformed_045.sh` | 256 | Fixed-seed mutated sources in both profiles; bounded termination with valid JSON errors or strict-C-valid output |
+| `tests/native/checker_046.sh` | 23 | Result-bearing patterns, parameters, receivers, imported bodies, preserved zero-state rules, and bounded shared-type checking |
+| `tests/native/codegen_046.sh` | 34 | Fixed-array length without extra copies; 8 MiB stack, both optimization levels and profiles, staged calls/defer, preserved bounds/lifetime/result/conversion failures |
+| `tests/native/input_046.sh` | 16 | Learning example in both profiles: positive/nonpositive input, EOF, format, positive/negative range errors, and closed stdin |
+| `tests/native/output_046.sh` | 14 | Destination-aware text/JSON failures, blocked paths, forced staged-write failures, output/source preservation, cleanup, permissions, and compiler stdout errors |
+| `tests/native/output_runtime_046.sh` | 8 | Normal/full stdout for main/worker output and panic, failure exit status, worker joining, and deferred marker-file cleanup |
+| `tests/native/threads_043.sh` | 19 | Spawn/join results, deferred joins, worker panic, automatic child cleanup, strict worker types, and forbidden handle escape |
+| `tests/native/threads_runtime.sh` | 16 | Actual worker overlap, nested jobs, handle ownership, limits, repeated joins, thread-local resources, panic cleanup, and synchronized input/output |
+| `tests/native/tutorial.sh` | 11 | Ten lesson programs, successful/invalid integer input, expected output, and file contents |
+| `tests/selfhost/semantics.sh` | 53 | Subset types, scopes, calls, literals, reserved C names, trigraphs |
+| `tests/selfhost/toolchain.sh` | 26 | Commands, strict flags, argv/statuses, protected resources, self-rebuild |
+| `tests/selfhost/frontend_stability.sh` | 13 | Evaluation order, laziness, loops, checked arithmetic, expression limit, source relocation |
+| `tests/selfhost/runtime_stability.sh` | 21 | String chunks/cache, bounds, arithmetic helpers, source aliases, cleanup |
+| `tests/selfhost/diagnostics.sh` | 7 | Expression columns, long lines, EOF, invalid token, operand types, undefined names, failed rereads without stale excerpts |
+| `tests/native/source_io.sh` | 6 | Nonblocking FIFO rejection in both frontends, formatter, headers, imports, and driver |
+
+The tutorial's file-writing program runs inside a temporary directory. Formatter tests compare behavior before and after formatting, not just text. FIFO tests use `timeout` so a blocked open is a test failure.
+
+The mutation generator uses seed `0x4b524d45`, eight small source templates, and byte insertions, replacements, deletions, or truncations to create 128 inputs. Original seeds and mutations run in work and learn. Accepted cases must pass strict C syntax checking; rejected cases must emit valid JSON carrying the active mode. A ten-second per-command deadline catches runaway work. Generated mutants are syntax-checked rather than executed. The corpus is reproducible and targeted; it does not replace coverage-guided fuzzing or establish exhaustive input coverage.
+
+The new codegen suite compiles fixtures at `-O0` and `-O3`. Its repeated large-array length case runs with an 8 MiB stack; the checker-only shared-type case uses 6,000 locals under a deadline and is never executed. Output tests use a file-size limit to fail staged writes without relying on the user's permission level. They verify that the previous artifact or source remains, that temporary paths are removed, and that errors remain valid JSON when requested. Runtime-output cases use deferred file writes to prove cleanup completed even when stdout is a full device.
+
+## AddressSanitizer and UndefinedBehaviorSanitizer
+
+`make test-sanitize` instruments the native compiler and the subset compiler, driver, runtime, and OS layer. It reruns semantic, frontend, diagnostic, runtime, toolchain, and input checks under ASan/UBSan, including the profile, security, mutation, stabilization, checker/codegen, native-output, runtime-output, and threading regressions. Diagnostic and formatting helpers, the learning example, fixed-array length fixtures, long chains, and imported/method fixtures are instrumented too. Generated C is also instrumented for selected v0.3, borrowing, bootstrap arithmetic, and seven slice-assignment lifetime scenarios. Mutated accepted programs receive strict C syntax checks; the generator itself is ordinary native C.
+
+`make test-thread-sanitize` runs the 16 C thread-runtime scenarios with ThreadSanitizer. The overlap test uses synchronization to require two workers to be active; success cannot be reproduced by simply executing workers sequentially. Ownership and cleanup tests exercise nested workers, worker-local allocations, and shared standard-stream locking. TSan is an additional host/toolchain check; support for every POSIX system is not implied.
+
+LeakSanitizer is disabled by default because the managed environment does not support it under its tracing setup. This result therefore does not include a leak check. On a supported host, request one with:
+
+```sh
+ASAN_OPTIONS=detect_leaks=1 make test-sanitize
+```
+
+`UBSAN_OPTIONS=halt_on_error=1` is the default. Arithmetic test failures must name the source operation, rather than producing a sanitizer report about unsafe C arithmetic.
+
+To exercise subset generated behavior without optimization:
+
+```sh
+KREMEN_TEST_OPT=-O0 sh tests/selfhost/frontend_stability.sh
+```
+
+Native diagnostic fixtures explicitly include both `-O0` and `-O3` builds.
+
+## Installation and portability
+
+`make test-install` builds and installs both compilers into a temporary prefix containing spaces. It checks versions, offline native/learning explanations, the installed learn-profile example before and after relocation, installed tutorial output and reports, the license and thread guide, runtime lookup, prefix relocation, the installed worker example, subset program execution, upgrade, invalid-manifest refusal, unrelated-file preservation, collision refusal, and uninstall.
+
+The platform suite forces `KM_NO_PROC_SELF_EXE=1` and tests argv/PATH fallback on Linux, including an empty PATH element and executable symlink. A fresh compiler copy is built without assembly from a checkout path containing an apostrophe, using a compiler path with similarly difficult characters. This validates those fallback paths on Linux; it is not evidence of release testing on macOS, Windows, or ARM.
+
+## Source archive checks
+
+```sh
+make dist
+unzip ../kremen-v0.4.6.zip -d /tmp/kremen-release-check
+cd /tmp/kremen-release-check/kremen
+sha256sum -c SHA256SUMS
+make all selfhost
+make test
+make test-install
+```
+
+The release archives contain source, the installer, documentation, examples, tests, and the committed generated seed. They exclude build directories, executable build products, Python sources, and caches. Validation includes a fresh unpack into a path containing spaces, checksum verification, a clean build, tests, installation/relocation, and subset self-rebuild.
+
+Documentation checks cover local Markdown file links, English-only Markdown prose, and compilable complete examples. The two intentionally invalid programs in the error guide are expected to fail; the other complete examples must pass. Tutorial files are formatted and their outputs are tested.
+
+## What these results do not establish
+
+Passing regressions and sanitizers does not prove the absence of bugs. The full frontend remains C, and the bootstrap remains a smaller language. [Safety and memory](safety.md) defines the current guarantees.
+
+The checking, bootstrap, and string-runtime [benchmark reports](../bench/README.md) belong to 0.4.1. The separate 0.4.4 emitter comparison checks identical C output against 0.4.3 and records variable timings; it does not establish a guaranteed speedup. File-buffer capacities are allocator requests, not promised RSS reductions. The copy microbenchmark separately checks 16,768 size/alignment combinations.

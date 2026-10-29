@@ -1,0 +1,29 @@
+name: Linux build
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install build and runtime dependencies
+        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libgtk-3-dev librsvg2-dev libayatana-appindicator3-dev patchelf bubblewrap build-essential python3
+      - run: npm ci
+      - run: sh scripts/build-toolchain.sh
+      - run: python3 scripts/verify-lessons.py
+      - run: python3 installer/test_installer.py
+      - run: npm run build
+      - run: cargo test --manifest-path src-tauri/Cargo.toml --lib -- --include-ignored --test-threads=1
+      - run: npm run package -- --bundles deb
+      - run: bash scripts/build-installer.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kremen-learn-linux
+          path: |
+            artifacts/*.run
+            artifacts/*.sha256
+            src-tauri/target/release/bundle/deb/*.deb

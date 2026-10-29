@@ -1,0 +1,21 @@
+   Compiling kremen-learn v0.1.0 (/workspace/kremen-learn/src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.91s
+     Running unittests src/lib.rs (src-tauri/target/debug/deps/kremen_learn_lib-4d3dcbeb56ada50b)
+
+running 13 tests
+test diagnostics::tests::raw_diagnostic_preserved ... ok
+test diagnostics::tests::utf8_tabs_and_astral_characters ... ok
+test engine::curriculum_integration::all_solutions_test_and_persist ... ok
+test engine::curriculum_integration::expected_compiler_error_is_a_real_test ... ok
+test engine::curriculum_integration::external_project_with_local_imports ... ok
+test engine::tests::real_compiler_roundtrip_stop_and_isolation ... ok
+test process::isolation_tests::generated_files_reject_parent_symlinks ... ok
+test process::isolation_tests::namespace_boundaries_and_output_limits ... ok
+test process::tests::paths_cannot_escape ... ok
+test storage::tests::detects_external_project_changes ... ok
+test storage::tests::persists_progress_and_retains_completion ... ok
+test storage::tests::refuses_symlink_destination ... ok
+test storage::tests::rejects_traversal_and_foreign_paths ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.85s
+

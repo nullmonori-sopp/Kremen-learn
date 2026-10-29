@@ -1,0 +1,1 @@
+PASS: install, executable launcher, reinstall, uninstall/data preservation, corruption, traversal, absolute path and symlink rejection

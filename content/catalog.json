@@ -1,0 +1,1284 @@
+{
+  "schemaVersion": 1,
+  "compilerVersion": "0.4.6",
+  "courses": [
+    {
+      "id": "foundations",
+      "title": {
+        "en": "First steps",
+        "ru": "Первые шаги"
+      },
+      "description": {
+        "en": "A small program becomes something you can change and understand.",
+        "ru": "Маленькая программа становится понятной и послушной."
+      },
+      "art": "/art/foundations.svg",
+      "lessonIds": [
+        "01-first-program",
+        "02-variables"
+      ],
+      "duration": "20 min",
+      "level": {
+        "en": "Beginner",
+        "ru": "Начальный"
+      },
+      "prerequisites": {
+        "en": "No programming experience required.",
+        "ru": "Опыт программирования не нужен."
+      },
+      "outcomes": [
+        {
+          "en": "Run programs, print text, name typed values.",
+          "ru": "Запускать программы, выводить текст, давать значениям имена."
+        }
+      ],
+      "durationMinutes": 20
+    },
+    {
+      "id": "thinking",
+      "title": {
+        "en": "Think in code",
+        "ru": "Думать кодом"
+      },
+      "description": {
+        "en": "Turn a question into expressions and clear decisions.",
+        "ru": "Превращайте вопрос в выражения и понятные решения."
+      },
+      "art": "/art/algorithms.svg",
+      "lessonIds": [
+        "03-expressions",
+        "04-conditions"
+      ],
+      "duration": "24 min",
+      "level": {
+        "en": "Beginner",
+        "ru": "Начальный"
+      },
+      "prerequisites": {
+        "en": "First steps: variables and output.",
+        "ru": "Первые шаги: переменные и вывод."
+      },
+      "outcomes": [
+        {
+          "en": "Calculate with integers and choose branches.",
+          "ru": "Вычислять с целыми числами и выбирать ветви."
+        }
+      ],
+      "durationMinutes": 24
+    },
+    {
+      "id": "algorithms",
+      "title": {
+        "en": "Patterns of reasoning",
+        "ru": "Приёмы мышления"
+      },
+      "description": {
+        "en": "Repeat a calculation, name it, and make its boundary clear.",
+        "ru": "Повторяйте вычисления, давайте им имена и определяйте границы."
+      },
+      "art": "/art/concurrency.svg",
+      "lessonIds": [
+        "05-loops",
+        "06-functions"
+      ],
+      "duration": "24 min",
+      "level": {
+        "en": "Beginner",
+        "ru": "Начальный"
+      },
+      "prerequisites": {
+        "en": "Expressions and conditions.",
+        "ru": "Выражения и условия."
+      },
+      "outcomes": [
+        {
+          "en": "Trace loops, build accumulators, write functions.",
+          "ru": "Прослеживать циклы, накапливать результат, писать функции."
+        }
+      ],
+      "durationMinutes": 24
+    },
+    {
+      "id": "data",
+      "title": {
+        "en": "The shape of data",
+        "ru": "Форма данных"
+      },
+      "description": {
+        "en": "Explore arrays, records, and small changes in memory.",
+        "ru": "Исследуйте массивы, записи и небольшие изменения в памяти."
+      },
+      "art": "/art/memory.svg",
+      "lessonIds": [
+        "07-arrays",
+        "08-structs-methods"
+      ],
+      "duration": "24 min",
+      "level": {
+        "en": "Beginner",
+        "ru": "Начальный"
+      },
+      "prerequisites": {
+        "en": "Loops and functions.",
+        "ru": "Циклы и функции."
+      },
+      "outcomes": [
+        {
+          "en": "Index arrays, reason about copies, change fields through methods.",
+          "ru": "Индексировать массивы, рассуждать о копиях, менять поля через методы."
+        }
+      ],
+      "durationMinutes": 24
+    },
+    {
+      "id": "reliable",
+      "title": {
+        "en": "Expect the unexpected",
+        "ru": "Предвидеть неожиданное"
+      },
+      "description": {
+        "en": "Make success, failure, and possible states explicit.",
+        "ru": "Явно описывайте успех, ошибку и возможные состояния."
+      },
+      "art": "/art/errors.svg",
+      "lessonIds": [
+        "09-results",
+        "10-enums-match"
+      ],
+      "duration": "24 min",
+      "level": {
+        "en": "Beginner",
+        "ru": "Начальный"
+      },
+      "prerequisites": {
+        "en": "Functions and structs.",
+        "ru": "Функции и структуры."
+      },
+      "outcomes": [
+        {
+          "en": "Handle results and enumerate meaningful cases.",
+          "ru": "Обрабатывать результаты и перечислять значимые случаи."
+        }
+      ],
+      "durationMinutes": 24
+    },
+    {
+      "id": "systems",
+      "title": {
+        "en": "Beyond the program",
+        "ru": "За пределами программы"
+      },
+      "description": {
+        "en": "Read input and manage a real file with scoped cleanup.",
+        "ru": "Читайте ввод и управляйте настоящим файлом с очисткой области."
+      },
+      "art": "/art/systems.svg",
+      "lessonIds": [
+        "11-input-output",
+        "12-defer-resources"
+      ],
+      "duration": "36 min",
+      "level": {
+        "en": "Beginner",
+        "ru": "Начальный"
+      },
+      "prerequisites": {
+        "en": "Results and exhaustive match.",
+        "ru": "Результаты и полный match."
+      },
+      "outcomes": [
+        {
+          "en": "Validate input, distinguish error domains, release file handles.",
+          "ru": "Проверять ввод, различать типы кодов ошибок, закрывать файлы."
+        }
+      ],
+      "durationMinutes": 36
+    }
+  ],
+  "lessons": [
+    {
+      "id": "01-first-program",
+      "schemaVersion": 1,
+      "courseId": "foundations",
+      "title": {
+        "en": "Your first program",
+        "ru": "Первая программа"
+      },
+      "goal": {
+        "en": "Run a complete program and control its output.",
+        "ru": "Запустить целую программу и управлять её выводом."
+      },
+      "description": {
+        "en": "Run a complete program and control its output.",
+        "ru": "Запустить целую программу и управлять её выводом."
+      },
+      "explanation": {
+        "en": "A program is a sequence of instructions. Kremen begins with `func main()`. Braces enclose its body. `println` prints its arguments with spaces between them and ends the line. Text belongs in double quotes. `package main` identifies this entry module. Calls execute from top to bottom. Try Run first, then edit the text and run again.",
+        "ru": "Программа — последовательность инструкций. Kremen начинает с `func main()`. Фигурные скобки ограничивают её тело. `println` выводит аргументы через пробел и заканчивает строку. Текст заключают в двойные кавычки. `package main` обозначает главный модуль. Вызовы выполняются сверху вниз. Сначала запустите пример, затем измените текст и запустите снова."
+      },
+      "task": {
+        "en": "Print `Hello, Kremen!` on the first line and `I can program.` on the second. Match capitalization and punctuation exactly.",
+        "ru": "Выведите `Hello, Kremen!` в первой строке и `I can program.` во второй. Сохраните регистр и знаки препинания."
+      },
+      "duration": 8,
+      "markdown": {
+        "en": "lessons/01-first-program.en.md",
+        "ru": "lessons/01-first-program.ru.md"
+      },
+      "example": "package main\nfunc main() {\n    println(\"Hello, Kremen!\")\n}\n",
+      "starter": "package main\nfunc main() {\n    println(\"Hello, Kremen!\")\n}\n",
+      "solution": "package main\nfunc main() {\n    println(\"Hello, Kremen!\")\n    println(\"I can program.\")\n}\n",
+      "files": {
+        "main.kr": "package main\nfunc main() {\n    println(\"Hello, Kremen!\")\n}\n"
+      },
+      "entry": "main.kr",
+      "mode": "learn",
+      "hints": {
+        "en": [
+          "Add a call inside the braces of main.",
+          "Use a separate println for each line.",
+          "The second call is println(\"I can program.\")."
+        ],
+        "ru": [
+          "Добавьте вызов внутри фигурных скобок main.",
+          "Используйте отдельный println для каждой строки.",
+          "Второй вызов: println(\"I can program.\")."
+        ]
+      },
+      "walkthrough": {
+        "en": "The first call prints a greeting and a newline. The second prints the next sentence. No manual newline escape is needed. An extra blank line would fail the exact-output test.",
+        "ru": "Первый вызов печатает приветствие и перевод строки. Второй печатает следующее предложение. Явный символ перевода строки не нужен. Лишняя пустая строка не совпадёт с ожидаемым выводом."
+      },
+      "transfer": {
+        "en": "Most languages have an entry point and output functions: main in C, println! in Rust, and print in Python. Function names and punctuation differ; execution order remains the same.",
+        "ru": "В большинстве языков есть точка входа и функции вывода: main в C, println! в Rust и print в Python. Названия и знаки различаются, но порядок выполнения остаётся тем же."
+      },
+      "tests": [
+        {
+          "id": "output",
+          "name": {
+            "en": "Expected output",
+            "ru": "Ожидаемый вывод"
+          },
+          "stdin": "",
+          "stdout": "Hello, Kremen!\nI can program.\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        }
+      ],
+      "solutionMarkdown": {
+        "en": "lessons/01-first-program.solution.en.md",
+        "ru": "lessons/01-first-program.solution.ru.md"
+      }
+    },
+    {
+      "id": "02-variables",
+      "schemaVersion": 1,
+      "courseId": "foundations",
+      "title": {
+        "en": "Values with names",
+        "ru": "Имена для значений"
+      },
+      "goal": {
+        "en": "Declare typed variables and distinguish mutable values from constants.",
+        "ru": "Объявлять переменные с типами и отличать их от констант."
+      },
+      "description": {
+        "en": "Declare typed variables and distinguish mutable values from constants.",
+        "ru": "Объявлять переменные с типами и отличать их от констант."
+      },
+      "explanation": {
+        "en": "A variable names a stored value. In `var apples i64 = 3`, i64 is a signed 64-bit integer type and 3 is the initial value. `var` permits reassignment; `const` does not. `+=` adds to an existing value. `bool` stores true or false and `string` stores text bytes. Learn mode asks you to initialize every local variable explicitly. Unused names are errors, so use each value you declare.",
+        "ru": "Переменная даёт имя хранимому значению. В `var apples i64 = 3` тип i64 означает знаковое 64-битное целое число, а 3 — начальное значение. `var` разрешает новое присваивание, `const` — нет. `+=` прибавляет к текущему значению. `bool` хранит true или false, `string` — байты текста. В режиме Learn каждую локальную переменную нужно явно инициализировать. Неиспользуемые имена считаются ошибкой: используйте каждое объявленное значение."
+      },
+      "task": {
+        "en": "Start with 4 notebooks, add 3, and print their total price at 6 per notebook. Output exactly `notebooks: 7` and `cost: 42` on separate lines. Keep price constant.",
+        "ru": "Начните с 4 тетрадей, добавьте 3 и посчитайте стоимость по 6 за тетрадь. Выведите `notebooks: 7` и `cost: 42` в отдельных строках. Цена должна быть константой."
+      },
+      "duration": 12,
+      "markdown": {
+        "en": "lessons/02-variables.en.md",
+        "ru": "lessons/02-variables.ru.md"
+      },
+      "example": "package main\nfunc main() {\n    var apples i64 = 3\n    const price i64 = 4\n    apples += 2\n    println(\"cost:\", apples * price)\n}\n",
+      "starter": "package main\nfunc main() {\n    var notebooks i64 = 4\n    const price i64 = 6\n    println(\"notebooks:\", notebooks)\n    println(\"cost:\", notebooks * price)\n}\n",
+      "solution": "package main\nfunc main() {\n    var notebooks i64 = 4\n    const price i64 = 6\n    notebooks += 3\n    println(\"notebooks:\", notebooks)\n    println(\"cost:\", notebooks * price)\n}\n",
+      "files": {
+        "main.kr": "package main\nfunc main() {\n    var notebooks i64 = 4\n    const price i64 = 6\n    println(\"notebooks:\", notebooks)\n    println(\"cost:\", notebooks * price)\n}\n"
+      },
+      "entry": "main.kr",
+      "mode": "learn",
+      "hints": {
+        "en": [
+          "Update notebooks before printing.",
+          "Use += to add the new notebooks.",
+          "Insert notebooks += 3 before the first println."
+        ],
+        "ru": [
+          "Измените notebooks до вывода.",
+          "Используйте += для добавления тетрадей.",
+          "Вставьте notebooks += 3 перед первым println."
+        ]
+      },
+      "walkthrough": {
+        "en": "notebooks changes from 4 to 7. price stays 6. Multiplication reads the current value of notebooks, so the cost is 42. Assigning to price would be a compile error.",
+        "ru": "notebooks меняется с 4 на 7, price остаётся равным 6. Умножение читает текущее значение notebooks, поэтому стоимость равна 42. Присваивание константе price вызвало бы ошибку компиляции."
+      },
+      "transfer": {
+        "en": "This corresponds to mutable and immutable bindings in Rust, let and const in JavaScript, and ordinary variables with explicit types in C. Explicit integer widths matter when exchanging binary data.",
+        "ru": "Это соответствует изменяемым и неизменяемым привязкам в Rust, let и const в JavaScript и переменным с явными типами в C. Явная разрядность целых важна при обмене двоичными данными."
+      },
+      "tests": [
+        {
+          "id": "output",
+          "name": {
+            "en": "Expected output",
+            "ru": "Ожидаемый вывод"
+          },
+          "stdin": "",
+          "stdout": "notebooks: 7\ncost: 42\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        }
+      ],
+      "solutionMarkdown": {
+        "en": "lessons/02-variables.solution.en.md",
+        "ru": "lessons/02-variables.solution.ru.md"
+      }
+    },
+    {
+      "id": "03-expressions",
+      "schemaVersion": 1,
+      "courseId": "thinking",
+      "title": {
+        "en": "Calculate and compare",
+        "ru": "Вычислять и сравнивать"
+      },
+      "goal": {
+        "en": "Use arithmetic, comparisons, and parentheses to produce values.",
+        "ru": "Получать значения с помощью арифметики, сравнений и скобок."
+      },
+      "description": {
+        "en": "Use arithmetic, comparisons, and parentheses to produce values.",
+        "ru": "Получать значения с помощью арифметики, сравнений и скобок."
+      },
+      "explanation": {
+        "en": "An expression produces a value. Multiplication and division happen before addition and subtraction; parentheses choose a different order. Integer division discards the fractional part: 17 / 5 is 3. The remainder operator % gives 2. `==` compares values, while `=` assigns them. Comparisons return bool. Integer operations and conversions have runtime safety checks; division by zero is an error, not a useful result.",
+        "ru": "Выражение производит значение. Умножение и деление выполняются до сложения и вычитания; скобки меняют порядок. Целочисленное деление отбрасывает дробную часть: 17 / 5 равно 3. Оператор остатка % даёт 2. `==` сравнивает значения, а `=` присваивает их. Сравнения возвращают bool. Арифметика и преобразования целых защищены проверками во время выполнения; деление на ноль — ошибка."
+      },
+      "task": {
+        "en": "A group of 23 learners needs tables seating 4. Print full tables, remaining learners, then whether everyone fits without a partial table: `5`, `3`, `false`. Use /, %, and ==.",
+        "ru": "Для 23 учащихся нужны столы на 4 человека. Выведите число полных столов, оставшихся людей и ответ, можно ли рассадить всех без неполного стола: `5`, `3`, `false`. Используйте /, % и ==."
+      },
+      "duration": 12,
+      "markdown": {
+        "en": "lessons/03-expressions.en.md",
+        "ru": "lessons/03-expressions.ru.md"
+      },
+      "example": "package main\nfunc main() {\n    println(2 + 3 * 4)\n    println((2 + 3) * 4)\n    println(17 / 5, 17 % 5)\n}\n",
+      "starter": "package main\nfunc main() {\n    const learners i64 = 23\n    const seats i64 = 4\n    println(learners)\n    println(seats)\n}\n",
+      "solution": "package main\nfunc main() {\n    const learners i64 = 23\n    const seats i64 = 4\n    println(learners / seats)\n    println(learners % seats)\n    println(learners % seats == 0)\n}\n",
+      "files": {
+        "main.kr": "package main\nfunc main() {\n    const learners i64 = 23\n    const seats i64 = 4\n    println(learners)\n    println(seats)\n}\n"
+      },
+      "entry": "main.kr",
+      "mode": "learn",
+      "hints": {
+        "en": [
+          "Quotient and remainder answer different questions.",
+          "Print learners / seats, then learners % seats.",
+          "Compare the remainder with zero using ==."
+        ],
+        "ru": [
+          "Частное и остаток отвечают на разные вопросы.",
+          "Выведите learners / seats, затем learners % seats.",
+          "Сравните остаток с нулём оператором ==."
+        ]
+      },
+      "walkthrough": {
+        "en": "23 = 5 × 4 + 3. Five tables are full, with three learners left. Since the remainder is not zero, the final comparison is false.",
+        "ru": "23 = 5 × 4 + 3. Пять столов заполнены, трое учащихся остаются. Остаток не равен нулю, поэтому последнее сравнение даёт false."
+      },
+      "transfer": {
+        "en": "Integer division, remainders, precedence, and boolean comparisons appear in C, Java, Go, and Rust. Python uses // for integer division, so syntax must be checked when switching languages.",
+        "ru": "Целочисленное деление, остаток, приоритет операций и логические сравнения есть в C, Java, Go и Rust. Python использует // для целочисленного деления: при смене языка проверяйте синтаксис."
+      },
+      "tests": [
+        {
+          "id": "output",
+          "name": {
+            "en": "Expected output",
+            "ru": "Ожидаемый вывод"
+          },
+          "stdin": "",
+          "stdout": "5\n3\nfalse\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        }
+      ],
+      "solutionMarkdown": {
+        "en": "lessons/03-expressions.solution.en.md",
+        "ru": "lessons/03-expressions.solution.ru.md"
+      }
+    },
+    {
+      "id": "04-conditions",
+      "schemaVersion": 1,
+      "courseId": "thinking",
+      "title": {
+        "en": "Choose a path",
+        "ru": "Выбрать путь"
+      },
+      "goal": {
+        "en": "Make mutually exclusive decisions using boolean conditions.",
+        "ru": "Принимать взаимоисключающие решения по логическим условиям."
+      },
+      "description": {
+        "en": "Make mutually exclusive decisions using boolean conditions.",
+        "ru": "Принимать взаимоисключающие решения по логическим условиям."
+      },
+      "explanation": {
+        "en": "An if block runs only when its condition is true. else if tests another condition when the first failed; else handles the remaining cases. Conditions must have type bool. `>=` means at least. `&&` combines requirements, `||` accepts either, and `!` negates a bool. Order your cases carefully: a broad first condition can hide a more specific later one.",
+        "ru": "Блок if выполняется только при истинном условии. else if проверяет следующее условие, если первое не подошло; else обрабатывает оставшиеся случаи. Условие должно иметь тип bool. `>=` означает «не меньше». `&&` требует выполнения обоих условий, `||` — хотя бы одного, а `!` обращает bool. Порядок важен: широкое первое условие может скрыть более точный случай."
+      },
+      "task": {
+        "en": "For score 82, print `excellent` at 90 or above, `passed` at 60 or above, otherwise `try again`. Only one line should print. Keep all three branches.",
+        "ru": "Для оценки 82 выведите `excellent`, если она не меньше 90, `passed`, если не меньше 60, иначе `try again`. Должна появиться одна строка. Сохраните все три ветви."
+      },
+      "duration": 12,
+      "markdown": {
+        "en": "lessons/04-conditions.en.md",
+        "ru": "lessons/04-conditions.ru.md"
+      },
+      "example": "package main\nfunc main() {\n    const temperature i64 = 12\n    if temperature < 0 {\n        println(\"freezing\")\n    } else {\n        println(\"above freezing\")\n    }\n}\n",
+      "starter": "package main\nfunc main() {\n    const score i64 = 82\n    if score >= 90 {\n        println(\"excellent\")\n    } else {\n        println(\"try again\")\n    }\n}\n",
+      "solution": "package main\nfunc main() {\n    const score i64 = 82\n    if score >= 90 {\n        println(\"excellent\")\n    } else if score >= 60 {\n        println(\"passed\")\n    } else {\n        println(\"try again\")\n    }\n}\n",
+      "files": {
+        "main.kr": "package main\nfunc main() {\n    const score i64 = 82\n    if score >= 90 {\n        println(\"excellent\")\n    } else {\n        println(\"try again\")\n    }\n}\n"
+      },
+      "entry": "main.kr",
+      "mode": "learn",
+      "hints": {
+        "en": [
+          "82 lies between 60 and 89.",
+          "Insert else if between the first if and the final else.",
+          "Use else if score >= 60 { println(\"passed\") }."
+        ],
+        "ru": [
+          "82 находится между 60 и 89.",
+          "Добавьте else if между первым if и последним else.",
+          "Используйте else if score >= 60 { println(\"passed\") }."
+        ]
+      },
+      "walkthrough": {
+        "en": "82 fails the first comparison and passes the second, so only passed prints. Test the boundary values 59, 60, 89, and 90 yourself to understand why the order matters.",
+        "ru": "82 не проходит первое сравнение и проходит второе, поэтому выводится только passed. Самостоятельно проверьте граничные значения 59, 60, 89 и 90: так станет понятна важность порядка."
+      },
+      "transfer": {
+        "en": "Branching is shared by most languages. This classification pattern also appears in validation rules, UI state transitions, and protocol handlers. Boundary testing transfers directly to larger software.",
+        "ru": "Ветвление есть в большинстве языков. Такая классификация применяется в проверке данных, переходах состояния интерфейса и обработчиках протоколов. Проверка границ полезна и в больших программах."
+      },
+      "tests": [
+        {
+          "id": "output",
+          "name": {
+            "en": "Expected output",
+            "ru": "Ожидаемый вывод"
+          },
+          "stdin": "",
+          "stdout": "passed\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        }
+      ],
+      "solutionMarkdown": {
+        "en": "lessons/04-conditions.solution.en.md",
+        "ru": "lessons/04-conditions.solution.ru.md"
+      }
+    },
+    {
+      "id": "05-loops",
+      "schemaVersion": 1,
+      "courseId": "algorithms",
+      "title": {
+        "en": "Repeat with a purpose",
+        "ru": "Повторять с целью"
+      },
+      "goal": {
+        "en": "Trace a loop and accumulate an answer without losing its boundary.",
+        "ru": "Прослеживать цикл и накапливать результат без ошибки на границе."
+      },
+      "description": {
+        "en": "Trace a loop and accumulate an answer without losing its boundary.",
+        "ru": "Прослеживать цикл и накапливать результат без ошибки на границе."
+      },
+      "explanation": {
+        "en": "A for loop repeats a block. Its three parts initialize a counter, test a bool before each iteration, and update the counter afterward. In `for number := 1; number <= 5; number++`, := declares the counter and ++ adds one. A running total is an accumulator. Write its starting value before the loop. Ask what stays true before every iteration and why the loop eventually stops.",
+        "ru": "Цикл for повторяет блок. Три части задают начальное значение счётчика, проверяют bool перед каждой итерацией и меняют счётчик после неё. В `for number := 1; number <= 5; number++` оператор := объявляет счётчик, а ++ прибавляет единицу. Переменная суммы накапливает результат; её начальное значение задают до цикла. Думайте, что верно перед каждой итерацией и почему цикл закончится."
+      },
+      "task": {
+        "en": "Sum all even integers from 1 through 10 inclusive. Print only `30`. Use a loop and test number % 2 == 0.",
+        "ru": "Сложите все чётные числа от 1 до 10 включительно. Выведите только `30`. Используйте цикл и условие number % 2 == 0."
+      },
+      "duration": 12,
+      "markdown": {
+        "en": "lessons/05-loops.en.md",
+        "ru": "lessons/05-loops.ru.md"
+      },
+      "example": "package main\nfunc main() {\n    var total i64 = 0\n    for number := 1; number <= 3; number++ {\n        total += number\n    }\n    println(total)\n}\n",
+      "starter": "package main\nfunc main() {\n    var total i64 = 0\n    for number := 1; number <= 10; number++ {\n        total += number\n    }\n    println(total)\n}\n",
+      "solution": "package main\nfunc main() {\n    var total i64 = 0\n    for number := 1; number <= 10; number++ {\n        if number % 2 == 0 {\n            total += number\n        }\n    }\n    println(total)\n}\n",
+      "files": {
+        "main.kr": "package main\nfunc main() {\n    var total i64 = 0\n    for number := 1; number <= 10; number++ {\n        total += number\n    }\n    println(total)\n}\n"
+      },
+      "entry": "main.kr",
+      "mode": "learn",
+      "hints": {
+        "en": [
+          "Add to total only inside a conditional block.",
+          "An even number has remainder zero when divided by 2.",
+          "Wrap total += number in if number % 2 == 0."
+        ],
+        "ru": [
+          "Изменяйте total только внутри условного блока.",
+          "У чётного числа остаток от деления на 2 равен нулю.",
+          "Поместите total += number в if number % 2 == 0."
+        ]
+      },
+      "walkthrough": {
+        "en": "The loop visits ten numbers and adds 2, 4, 6, 8, and 10. The invariant is that total contains the even values already visited. number grows each time, so the loop stops after 10.",
+        "ru": "Цикл посещает десять чисел и прибавляет 2, 4, 6, 8 и 10. Инвариант: total содержит сумму уже посещённых чётных чисел. number каждый раз растёт, поэтому после 10 цикл завершается."
+      },
+      "transfer": {
+        "en": "Accumulators and loop invariants underlie searching, parsing, and numerical algorithms in every language. Go uses a similar for syntax; Python often uses a range iterator.",
+        "ru": "Накопление результата и инварианты циклов лежат в основе поиска, разбора текста и численных алгоритмов на любом языке. У Go похожий синтаксис for, а Python часто использует range."
+      },
+      "tests": [
+        {
+          "id": "output",
+          "name": {
+            "en": "Expected output",
+            "ru": "Ожидаемый вывод"
+          },
+          "stdin": "",
+          "stdout": "30\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        }
+      ],
+      "solutionMarkdown": {
+        "en": "lessons/05-loops.solution.en.md",
+        "ru": "lessons/05-loops.solution.ru.md"
+      }
+    },
+    {
+      "id": "06-functions",
+      "schemaVersion": 1,
+      "courseId": "algorithms",
+      "title": {
+        "en": "Name a calculation",
+        "ru": "Дать вычислению имя"
+      },
+      "goal": {
+        "en": "Separate a reusable function from the code that calls it.",
+        "ru": "Отделять переиспользуемую функцию от вызывающего кода."
+      },
+      "description": {
+        "en": "Separate a reusable function from the code that calls it.",
+        "ru": "Отделять переиспользуемую функцию от вызывающего кода."
+      },
+      "explanation": {
+        "en": "A function groups instructions behind a name. Parameters are inputs local to that call. In `func twice(value i64) i64`, the last i64 is the return type. `return` computes a value and ends the call. Every path in a value-returning function must return a suitable value. A caller supplies arguments and must use the result. Local names do not leak into other functions.",
+        "ru": "Функция объединяет инструкции под одним именем. Параметры — входные значения, доступные только этому вызову. В `func twice(value i64) i64` последний i64 — тип результата. `return` вычисляет значение и завершает вызов. Каждый путь в функции с результатом должен вернуть подходящее значение. Вызывающий код передаёт аргументы и использует результат. Локальные имена не видны в других функциях."
+      },
+      "task": {
+        "en": "Implement square(value i64) i64. Use it to print square(3), square(5), and square(-4), one result per line: 9, 25, 16.",
+        "ru": "Реализуйте square(value i64) i64. Выведите square(3), square(5) и square(-4) по одному результату в строке: 9, 25, 16."
+      },
+      "duration": 12,
+      "markdown": {
+        "en": "lessons/06-functions.en.md",
+        "ru": "lessons/06-functions.ru.md"
+      },
+      "example": "package main\nfunc twice(value i64) i64 {\n    return value * 2\n}\nfunc main() {\n    println(twice(21))\n}\n",
+      "starter": "package main\nfunc square(value i64) i64 {\n    return value\n}\nfunc main() {\n    println(square(3))\n    println(square(5))\n    println(square(-4))\n}\n",
+      "solution": "package main\nfunc square(value i64) i64 {\n    return value * value\n}\nfunc main() {\n    println(square(3))\n    println(square(5))\n    println(square(-4))\n}\n",
+      "files": {
+        "main.kr": "package main\nfunc square(value i64) i64 {\n    return value\n}\nfunc main() {\n    println(square(3))\n    println(square(5))\n    println(square(-4))\n}\n"
+      },
+      "entry": "main.kr",
+      "mode": "learn",
+      "hints": {
+        "en": [
+          "A square is the product of a number with itself.",
+          "The same expression must work for positive and negative inputs.",
+          "Replace return value with return value * value."
+        ],
+        "ru": [
+          "Квадрат — произведение числа на само себя.",
+          "Одно выражение должно работать и для положительных, и для отрицательных чисел.",
+          "Замените return value на return value * value."
+        ]
+      },
+      "walkthrough": {
+        "en": "Each call has its own value parameter. Multiplying two negative values gives a positive square. We changed one function body and all three calls use the same rule.",
+        "ru": "У каждого вызова свой параметр value. Произведение двух отрицательных значений даёт положительный квадрат. Мы изменили одно тело функции, и все три вызова используют одно правило."
+      },
+      "transfer": {
+        "en": "Functions enable decomposition and independent testing in C, Go, Rust, Java, and Python. Explicit input and output types help make contracts visible.",
+        "ru": "Функции позволяют разбивать задачу и проверять части независимо в C, Go, Rust, Java и Python. Явные типы входов и результатов делают договорённости понятными."
+      },
+      "tests": [
+        {
+          "id": "output",
+          "name": {
+            "en": "Expected output",
+            "ru": "Ожидаемый вывод"
+          },
+          "stdin": "",
+          "stdout": "9\n25\n16\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        }
+      ],
+      "solutionMarkdown": {
+        "en": "lessons/06-functions.solution.en.md",
+        "ru": "lessons/06-functions.solution.ru.md"
+      }
+    },
+    {
+      "id": "07-arrays",
+      "schemaVersion": 1,
+      "courseId": "data",
+      "title": {
+        "en": "A sequence in memory",
+        "ru": "Последовательность в памяти"
+      },
+      "goal": {
+        "en": "Use zero-based indices and understand copying a fixed-size array.",
+        "ru": "Использовать индексы от нуля и понимать копирование массива фиксированного размера."
+      },
+      "description": {
+        "en": "Use zero-based indices and understand copying a fixed-size array.",
+        "ru": "Использовать индексы от нуля и понимать копирование массива фиксированного размера."
+      },
+      "explanation": {
+        "en": "An array stores a fixed number of values of one type. `[4]i64{3, 6, 9, 12}` has indices 0 through 3. len returns its length. Access at len is already out of bounds, so a traversal uses index < len(values). Kremen checks bounds. Assigning an array copies its elements: changing the copy leaves the original unchanged. Slices, a later topic, describe shared storage instead.",
+        "ru": "Массив хранит фиксированное число значений одного типа. У `[4]i64{3, 6, 9, 12}` индексы от 0 до 3. len возвращает длину. Индекс len уже за границами, поэтому обход использует index < len(values). Kremen проверяет границы. Присваивание массива копирует элементы: изменение копии не меняет оригинал. Срезы, которые появятся позже, описывают общую память."
+      },
+      "task": {
+        "en": "Sum [3, 6, 9, 12]. Copy the array, change copy[0] to 99, then print `total: 30` and `original: 3 copy: 99`.",
+        "ru": "Сложите элементы [3, 6, 9, 12]. Скопируйте массив, измените copy[0] на 99, затем выведите `total: 30` и `original: 3 copy: 99`."
+      },
+      "duration": 12,
+      "markdown": {
+        "en": "lessons/07-arrays.en.md",
+        "ru": "lessons/07-arrays.ru.md"
+      },
+      "example": "package main\nfunc main() {\n    var values = [3]i64{2, 4, 6}\n    var copy = values\n    copy[0] = 9\n    println(values[0], copy[0])\n}\n",
+      "starter": "package main\nfunc main() {\n    var values = [4]i64{3, 6, 9, 12}\n    var total i64 = 0\n    for index := 0; index < len(values); index++ {\n        total += values[index]\n    }\n    var copy = values\n    println(\"total:\", total)\n    println(\"original:\", values[0], \"copy:\", copy[0])\n}\n",
+      "solution": "package main\nfunc main() {\n    var values = [4]i64{3, 6, 9, 12}\n    var total i64 = 0\n    for index := 0; index < len(values); index++ {\n        total += values[index]\n    }\n    var copy = values\n    copy[0] = 99\n    println(\"total:\", total)\n    println(\"original:\", values[0], \"copy:\", copy[0])\n}\n",
+      "files": {
+        "main.kr": "package main\nfunc main() {\n    var values = [4]i64{3, 6, 9, 12}\n    var total i64 = 0\n    for index := 0; index < len(values); index++ {\n        total += values[index]\n    }\n    var copy = values\n    println(\"total:\", total)\n    println(\"original:\", values[0], \"copy:\", copy[0])\n}\n"
+      },
+      "entry": "main.kr",
+      "mode": "learn",
+      "hints": {
+        "en": [
+          "The loop already calculates the correct sum.",
+          "Change the copy after assigning var copy = values.",
+          "Insert copy[0] = 99 before printing."
+        ],
+        "ru": [
+          "Цикл уже считает правильную сумму.",
+          "Измените копию после var copy = values.",
+          "Вставьте copy[0] = 99 перед выводом."
+        ]
+      },
+      "walkthrough": {
+        "en": "The original elements sum to 30. Assignment creates an independent value. Only the first element of copy becomes 99, while values[0] remains 3.",
+        "ru": "Элементы оригинала дают сумму 30. Присваивание создаёт независимое значение. Только первый элемент copy становится 99, а values[0] остаётся равным 3."
+      },
+      "transfer": {
+        "en": "Kremen and Rust fixed arrays are values. Python lists and JavaScript arrays behave more like references. Always check whether assignment copies data or shares storage.",
+        "ru": "Фиксированные массивы Kremen и Rust — значения. Списки Python и массивы JavaScript ведут себя скорее как ссылки. Всегда выясняйте, копирует ли присваивание данные или разделяет память."
+      },
+      "tests": [
+        {
+          "id": "output",
+          "name": {
+            "en": "Expected output",
+            "ru": "Ожидаемый вывод"
+          },
+          "stdin": "",
+          "stdout": "total: 30\noriginal: 3 copy: 99\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        }
+      ],
+      "solutionMarkdown": {
+        "en": "lessons/07-arrays.solution.en.md",
+        "ru": "lessons/07-arrays.solution.ru.md"
+      }
+    },
+    {
+      "id": "08-structs-methods",
+      "schemaVersion": 1,
+      "courseId": "data",
+      "title": {
+        "en": "Data and its behavior",
+        "ru": "Данные и их поведение"
+      },
+      "goal": {
+        "en": "Group related fields and mutate a struct through a method.",
+        "ru": "Объединять связанные поля и менять структуру через метод."
+      },
+      "description": {
+        "en": "Group related fields and mutate a struct through a method.",
+        "ru": "Объединять связанные поля и менять структуру через метод."
+      },
+      "explanation": {
+        "en": "A struct names a collection of fields. Its literal supplies every field exactly once. A method is a function with a receiver before its name. `counter &mut Counter` temporarily borrows the caller’s counter and permits changes. A plain `counter Counter` receives a copy. The compiler checks borrow conflicts. This lesson uses a short method call; references and lifetimes receive their own later module.",
+        "ru": "Структура даёт имя группе полей. В литерале каждое поле указывают ровно один раз. Метод — функция с получателем перед именем. `counter &mut Counter` временно заимствует счётчик вызывающего кода и разрешает изменения. Обычный `counter Counter` получает копию. Компилятор проверяет конфликты заимствований. Здесь заимствование ограничено коротким вызовом метода; ссылки и время жизни подробно появятся позже."
+      },
+      "task": {
+        "en": "Complete add so it increases the counter. Starting from 10, add 7 and then 5. Print `counter: 22`.",
+        "ru": "Допишите add, чтобы метод увеличивал счётчик. Начните с 10, прибавьте 7 и затем 5. Выведите `counter: 22`."
+      },
+      "duration": 12,
+      "markdown": {
+        "en": "lessons/08-structs-methods.en.md",
+        "ru": "lessons/08-structs-methods.ru.md"
+      },
+      "example": "package main\ntype Counter struct {\n    value i64\n}\nfunc (counter &mut Counter) add(amount i64) {\n    counter.value += amount\n}\nfunc main() {\n    var counter = Counter{value: 0}\n    counter.add(2)\n    println(counter.value)\n}\n",
+      "starter": "package main\ntype Counter struct {\n    value i64\n}\nfunc (counter &mut Counter) add(amount i64) {\n    counter.value = amount\n}\nfunc main() {\n    var counter = Counter{value: 10}\n    counter.add(7)\n    counter.add(5)\n    println(\"counter:\", counter.value)\n}\n",
+      "solution": "package main\ntype Counter struct {\n    value i64\n}\nfunc (counter &mut Counter) add(amount i64) {\n    counter.value += amount\n}\nfunc main() {\n    var counter = Counter{value: 10}\n    counter.add(7)\n    counter.add(5)\n    println(\"counter:\", counter.value)\n}\n",
+      "files": {
+        "main.kr": "package main\ntype Counter struct {\n    value i64\n}\nfunc (counter &mut Counter) add(amount i64) {\n    counter.value = amount\n}\nfunc main() {\n    var counter = Counter{value: 10}\n    counter.add(7)\n    counter.add(5)\n    println(\"counter:\", counter.value)\n}\n"
+      },
+      "entry": "main.kr",
+      "mode": "learn",
+      "hints": {
+        "en": [
+          "Assignment replaces the field; addition should retain its previous value.",
+          "Use the same += operator as for an ordinary variable.",
+          "The method body is counter.value += amount."
+        ],
+        "ru": [
+          "Присваивание заменяет поле; сложение должно учитывать прежнее значение.",
+          "Используйте тот же оператор +=, что и для обычной переменной.",
+          "Тело метода: counter.value += amount."
+        ]
+      },
+      "walkthrough": {
+        "en": "The &mut receiver changes the original field. The first call makes 17; the second makes 22. Replacing += with = would leave only the last amount.",
+        "ru": "Получатель &mut меняет исходное поле. Первый вызов даёт 17, второй — 22. Оператор = вместо += оставил бы только последнее переданное число."
+      },
+      "transfer": {
+        "en": "Structs resemble records in C and Rust. Methods attach behavior as in Go or Rust. This is composition of data and functions; Kremen does not provide inheritance or interfaces.",
+        "ru": "Структуры похожи на записи C и Rust. Методы прикрепляют поведение, как в Go и Rust. Это объединение данных и функций; наследования и интерфейсов в Kremen нет."
+      },
+      "tests": [
+        {
+          "id": "output",
+          "name": {
+            "en": "Expected output",
+            "ru": "Ожидаемый вывод"
+          },
+          "stdin": "",
+          "stdout": "counter: 22\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        }
+      ],
+      "solutionMarkdown": {
+        "en": "lessons/08-structs-methods.solution.en.md",
+        "ru": "lessons/08-structs-methods.solution.ru.md"
+      }
+    },
+    {
+      "id": "09-results",
+      "schemaVersion": 1,
+      "courseId": "reliable",
+      "title": {
+        "en": "Failure as a value",
+        "ru": "Ошибка как значение"
+      },
+      "goal": {
+        "en": "Handle both success and failure explicitly using a result.",
+        "ru": "Явно обрабатывать успешный результат и ошибку."
+      },
+      "description": {
+        "en": "Handle both success and failure explicitly using a result.",
+        "ru": "Явно обрабатывать успешный результат и ошибку."
+      },
+      "explanation": {
+        "en": "`!i64` is a result containing either an i64 or a positive error code. A function returns `ok(value)` for success or `fail(code)` for failure. match inspects the case and binds its payload. In Learn, list both ok and fail and use the bound error code. Application codes have meanings chosen by your program. They are not automatically OS errno values. `?` can propagate a result in a fallible function; this exercise uses explicit match to show both paths.",
+        "ru": "`!i64` — результат, содержащий либо i64, либо положительный код ошибки. Функция возвращает `ok(value)` при успехе или `fail(code)` при неудаче. match проверяет случай и связывает вложенное значение с именем. В Learn нужно перечислить ok и fail и использовать код ошибки. Значение предметных кодов определяет программа; это не автоматически OS errno. `?` может передать ошибку из функции с результатом; здесь используем явный match, чтобы увидеть оба пути."
+      },
+      "task": {
+        "en": "Complete checkedSquare: negative input fails with application code 1001; otherwise return its square. Keep both calls and print `square: 9` then `error: 1001`.",
+        "ru": "Допишите checkedSquare: отрицательный вход даёт предметную ошибку 1001, иначе верните квадрат числа. Сохраните оба вызова и выведите `square: 9`, затем `error: 1001`."
+      },
+      "duration": 12,
+      "markdown": {
+        "en": "lessons/09-results.en.md",
+        "ru": "lessons/09-results.ru.md"
+      },
+      "example": "package main\nfunc doubled(value i64) !i64 {\n    if value < 0 {\n        return fail(1001)\n    }\n    return ok(value * 2)\n}\nfunc main() {\n    match doubled(-1) {\n        ok(answer) => { println(answer) }\n        fail(code) => { println(\"error:\", code) }\n    }\n}\n",
+      "starter": "package main\nfunc checkedSquare(value i64) !i64 {\n    return ok(value * value)\n}\nfunc show(value i64) {\n    match checkedSquare(value) {\n        ok(answer) => { println(\"square:\", answer) }\n        fail(code) => { println(\"error:\", code) }\n    }\n}\nfunc main() {\n    show(3)\n    show(-2)\n}\n",
+      "solution": "package main\nfunc checkedSquare(value i64) !i64 {\n    if value < 0 {\n        return fail(1001)\n    }\n    return ok(value * value)\n}\nfunc show(value i64) {\n    match checkedSquare(value) {\n        ok(answer) => { println(\"square:\", answer) }\n        fail(code) => { println(\"error:\", code) }\n    }\n}\nfunc main() {\n    show(3)\n    show(-2)\n}\n",
+      "files": {
+        "main.kr": "package main\nfunc checkedSquare(value i64) !i64 {\n    return ok(value * value)\n}\nfunc show(value i64) {\n    match checkedSquare(value) {\n        ok(answer) => { println(\"square:\", answer) }\n        fail(code) => { println(\"error:\", code) }\n    }\n}\nfunc main() {\n    show(3)\n    show(-2)\n}\n"
+      },
+      "entry": "main.kr",
+      "mode": "learn",
+      "hints": {
+        "en": [
+          "Validate before computing the successful result.",
+          "For a negative value, return fail(1001).",
+          "Insert if value < 0 { return fail(1001) } before return ok(...)."
+        ],
+        "ru": [
+          "Проверьте вход перед вычислением успешного результата.",
+          "При отрицательном значении верните fail(1001).",
+          "Вставьте if value < 0 { return fail(1001) } перед return ok(...)."
+        ]
+      },
+      "walkthrough": {
+        "en": "3 reaches ok(9), while -2 returns fail(1001) before multiplication. match reads the appropriate payload in each call. Error code 1001 belongs to this exercise’s contract. Do not describe it with errorMessage, which expects OS errno values.",
+        "ru": "3 приводит к ok(9), а -2 возвращает fail(1001) до умножения. match читает нужное вложенное значение в каждом вызове. Код 1001 относится к договорённости этой задачи. Не передавайте его в errorMessage: эта функция описывает OS errno."
+      },
+      "transfer": {
+        "en": "Rust Result and tagged error values in other languages represent the same idea: expected failure participates in ordinary control flow. Go uses a separate error return value; the responsibility to handle failure is similar.",
+        "ru": "Rust Result и помеченные значения ошибок в других языках выражают ту же идею: ожидаемая неудача участвует в обычном потоке управления. Go возвращает ошибку отдельным значением; обязанность обработать её остаётся."
+      },
+      "tests": [
+        {
+          "id": "output",
+          "name": {
+            "en": "Expected output",
+            "ru": "Ожидаемый вывод"
+          },
+          "stdin": "",
+          "stdout": "square: 9\nerror: 1001\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        }
+      ],
+      "solutionMarkdown": {
+        "en": "lessons/09-results.solution.en.md",
+        "ru": "lessons/09-results.solution.ru.md"
+      }
+    },
+    {
+      "id": "10-enums-match",
+      "schemaVersion": 1,
+      "courseId": "reliable",
+      "title": {
+        "en": "Represent the possibilities",
+        "ru": "Представить возможные случаи"
+      },
+      "goal": {
+        "en": "Model exclusive states with an enum and an exhaustive match.",
+        "ru": "Моделировать взаимоисключающие состояния через enum и полный match."
+      },
+      "description": {
+        "en": "Model exclusive states with an enum and an exhaustive match.",
+        "ru": "Моделировать взаимоисключающие состояния через enum и полный match."
+      },
+      "explanation": {
+        "en": "An enum is a value with exactly one active variant. A variant can carry data: Value(number i64). Even a variant without data uses parentheses when constructed, as in Reading.Missing(). match chooses the variant and gives its payload a local name. In Learn, enumerate all variants explicitly. This makes adding a new case visible at every decision site. Nested patterns, guards, and literal patterns are not supported in this version.",
+        "ru": "enum — значение с ровно одним активным вариантом. Вариант может нести данные: Value(number i64). Даже вариант без данных создают со скобками: Reading.Missing(). match выбирает вариант и даёт вложенному значению локальное имя. В Learn перечисляйте все варианты явно. Тогда добавление нового случая потребует пересмотреть каждое место принятия решения. Вложенные шаблоны, guards и шаблоны литералов в этой версии не поддерживаются."
+      },
+      "task": {
+        "en": "Represent a traffic signal with Stop, Wait, and Go. Make show print `stop`, `wait`, or `go` for its argument. Call all three variants in that order.",
+        "ru": "Представьте сигнал светофора вариантами Stop, Wait и Go. Пусть show выводит `stop`, `wait` или `go` для своего аргумента. Вызовите все три варианта в этом порядке."
+      },
+      "duration": 12,
+      "markdown": {
+        "en": "lessons/10-enums-match.en.md",
+        "ru": "lessons/10-enums-match.ru.md"
+      },
+      "example": "package main\ntype Reading enum {\n    Missing\n    Value(number i64)\n}\nfunc main() {\n    var reading = Reading.Value(42)\n    match reading {\n        Missing => { println(\"missing\") }\n        Value(number) => { println(number) }\n    }\n}\n",
+      "starter": "package main\ntype Signal enum {\n    Stop\n    Wait\n    Go\n}\nfunc show(signal Signal) {\n    match signal {\n        Stop => { println(\"stop\") }\n        Wait => { println(\"stop\") }\n        Go => { println(\"stop\") }\n    }\n}\nfunc main() {\n    show(Signal.Stop())\n    show(Signal.Wait())\n    show(Signal.Go())\n}\n",
+      "solution": "package main\ntype Signal enum {\n    Stop\n    Wait\n    Go\n}\nfunc show(signal Signal) {\n    match signal {\n        Stop => { println(\"stop\") }\n        Wait => { println(\"wait\") }\n        Go => { println(\"go\") }\n    }\n}\nfunc main() {\n    show(Signal.Stop())\n    show(Signal.Wait())\n    show(Signal.Go())\n}\n",
+      "files": {
+        "main.kr": "package main\ntype Signal enum {\n    Stop\n    Wait\n    Go\n}\nfunc show(signal Signal) {\n    match signal {\n        Stop => { println(\"stop\") }\n        Wait => { println(\"stop\") }\n        Go => { println(\"stop\") }\n    }\n}\nfunc main() {\n    show(Signal.Stop())\n    show(Signal.Wait())\n    show(Signal.Go())\n}\n"
+      },
+      "entry": "main.kr",
+      "mode": "learn",
+      "hints": {
+        "en": [
+          "Each arm should print the word for its own variant.",
+          "Change the Wait arm to println(\"wait\").",
+          "Change the Go arm to println(\"go\") and keep all three arms."
+        ],
+        "ru": [
+          "Каждая ветвь должна выводить слово своего варианта.",
+          "Измените ветвь Wait на println(\"wait\").",
+          "Измените Go на println(\"go\") и сохраните все три ветви."
+        ]
+      },
+      "walkthrough": {
+        "en": "The type permits exactly three states. Each call selects one arm; no integer magic numbers or inconsistent combinations of booleans are needed. Explicit coverage satisfies the Learn L004 requirement.",
+        "ru": "Тип допускает ровно три состояния. Каждый вызов выбирает одну ветвь: не нужны условные числовые коды или противоречивые комбинации bool. Явное покрытие удовлетворяет требованию Learn L004."
+      },
+      "transfer": {
+        "en": "Tagged unions in Rust, discriminated unions in TypeScript, and algebraic data types express this pattern. Exhaustive decisions are useful for network messages, editor states, and parsed syntax.",
+        "ru": "Помеченные объединения Rust, discriminated unions TypeScript и алгебраические типы данных выражают тот же подход. Полные решения полезны для сообщений сети, состояний редактора и разобранного синтаксиса."
+      },
+      "tests": [
+        {
+          "id": "output",
+          "name": {
+            "en": "Expected output",
+            "ru": "Ожидаемый вывод"
+          },
+          "stdin": "",
+          "stdout": "stop\nwait\ngo\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        }
+      ],
+      "solutionMarkdown": {
+        "en": "lessons/10-enums-match.solution.en.md",
+        "ru": "lessons/10-enums-match.solution.ru.md"
+      }
+    },
+    {
+      "id": "11-input-output",
+      "schemaVersion": 1,
+      "courseId": "systems",
+      "title": {
+        "en": "Read input carefully",
+        "ru": "Внимательно читать ввод"
+      },
+      "goal": {
+        "en": "Read an integer while preserving failure information.",
+        "ru": "Считывать целое число, сохраняя сведения об ошибке."
+      },
+      "description": {
+        "en": "Read an integer while preserving failure information.",
+        "ru": "Считывать целое число, сохраняя сведения об ошибке."
+      },
+      "explanation": {
+        "en": "stdin is a stream of input bytes, stdout is the program’s normal output, and stderr carries diagnostics. `readIntResult()` returns a result instead of stopping on invalid input. Its domain codes are 1 for end of input, 2 for invalid format, 3 for out of i64 range, and 4 for stream failure. These are reader codes, not OS errno. In this application, fill stdin before running; tests supply their own input independently. Learn requires fallible integer input and handling both cases.",
+        "ru": "stdin — поток входных байтов, stdout — обычный вывод программы, stderr — диагностика. `readIntResult()` возвращает результат, а не останавливает программу на неверном вводе. Предметные коды считывателя: 1 — конец ввода, 2 — неверный формат, 3 — выход за диапазон i64, 4 — ошибка потока. Это коды считывателя, не OS errno. В приложении заполните stdin перед запуском; тесты независимо подставят свой ввод. Learn требует безопасный ввод целого с обработкой обоих случаев."
+      },
+      "task": {
+        "en": "Read one integer. On success, print `Next:` followed by the integer plus one. On failure, print `Input error:` followed by the actual reader code. Do not print a prompt. The tests cover positive and negative values, malformed input, EOF, and range failure.",
+        "ru": "Считайте целое число. При успехе выведите `Next:` и число плюс один. При неудаче выведите `Input error:` и настоящий код считывателя. Не выводите приглашение. Тесты проверяют положительное и отрицательное число, неверный формат, конец ввода и выход за диапазон."
+      },
+      "duration": 16,
+      "markdown": {
+        "en": "lessons/11-input-output.en.md",
+        "ru": "lessons/11-input-output.ru.md"
+      },
+      "example": "package main\nfunc main() {\n    var input = readIntResult()\n    match input {\n        ok(number) => { println(\"Read:\", number) }\n        fail(code) => { println(\"Input error:\", code) }\n    }\n}\n",
+      "starter": "package main\nfunc main() {\n    var input = readIntResult()\n    match input {\n        ok(number) => { println(\"Next:\", number) }\n        fail(code) => { println(\"Input error:\", code) }\n    }\n}\n",
+      "solution": "package main\nfunc main() {\n    var input = readIntResult()\n    match input {\n        ok(number) => { println(\"Next:\", number + 1) }\n        fail(code) => { println(\"Input error:\", code) }\n    }\n}\n",
+      "files": {
+        "main.kr": "package main\nfunc main() {\n    var input = readIntResult()\n    match input {\n        ok(number) => { println(\"Next:\", number) }\n        fail(code) => { println(\"Input error:\", code) }\n    }\n}\n"
+      },
+      "entry": "main.kr",
+      "mode": "learn",
+      "hints": {
+        "en": [
+          "Only the successful arm needs arithmetic.",
+          "Keep fail(code) and print code directly.",
+          "Use println(\"Next:\", number + 1) in the ok arm."
+        ],
+        "ru": [
+          "Арифметика нужна только в успешной ветви.",
+          "Сохраните fail(code) и выводите code напрямую.",
+          "В ветви ok используйте println(\"Next:\", number + 1)."
+        ]
+      },
+      "walkthrough": {
+        "en": "Valid input binds number; adding one gives the requested next value. Failed input binds its reader code, which is printed unchanged. No OS errorMessage conversion occurs. The stream-error code 4 is documented but is not simulated by the portable stdin fixtures.",
+        "ru": "Корректный ввод связывает number; прибавление единицы даёт следующее значение. Ошибка ввода связывает код считывателя, который выводится без изменения. Преобразование через OS errorMessage не используется. Код ошибки потока 4 описан, но переносимые stdin-тесты его не имитируют."
+      },
+      "transfer": {
+        "en": "Every language must distinguish data from input failures. Rust parsing returns a Result; Go scanners expose errors; Python may raise conversion exceptions. The error transport differs, but validation and EOF handling remain necessary.",
+        "ru": "В любом языке нужно отличать данные от ошибок ввода. Rust возвращает Result при разборе, Go предоставляет ошибки считывателя, Python может выбросить исключение преобразования. Способ передачи различается, но проверка данных и конца ввода необходима."
+      },
+      "tests": [
+        {
+          "id": "positive",
+          "name": {
+            "en": "Positive input",
+            "ru": "Положительный ввод"
+          },
+          "stdin": "17\n",
+          "stdout": "Next: 18\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        },
+        {
+          "id": "negative",
+          "name": {
+            "en": "Negative input",
+            "ru": "Отрицательный ввод"
+          },
+          "stdin": "-2\n",
+          "stdout": "Next: -1\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        },
+        {
+          "id": "format",
+          "name": {
+            "en": "Invalid integer",
+            "ru": "Неверный формат"
+          },
+          "stdin": "hello\n",
+          "stdout": "Input error: 2\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        },
+        {
+          "id": "eof",
+          "name": {
+            "en": "End of input",
+            "ru": "Конец ввода"
+          },
+          "stdin": "",
+          "stdout": "Input error: 1\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        },
+        {
+          "id": "range",
+          "name": {
+            "en": "Outside i64 range",
+            "ru": "За диапазоном i64"
+          },
+          "stdin": "999999999999999999999999999999\n",
+          "stdout": "Input error: 3\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": []
+        }
+      ],
+      "solutionMarkdown": {
+        "en": "lessons/11-input-output.solution.en.md",
+        "ru": "lessons/11-input-output.solution.ru.md"
+      }
+    },
+    {
+      "id": "12-defer-resources",
+      "schemaVersion": 1,
+      "courseId": "systems",
+      "title": {
+        "en": "Finish what you open",
+        "ru": "Закрывать то, что открыли"
+      },
+      "goal": {
+        "en": "Schedule cleanup and handle a file result without leaking a handle.",
+        "ru": "Планировать очистку и обрабатывать файловый результат, не теряя дескриптор."
+      },
+      "description": {
+        "en": "Schedule cleanup and handle a file result without leaking a handle.",
+        "ru": "Планировать очистку и обрабатывать файловый результат, не теряя дескриптор."
+      },
+      "explanation": {
+        "en": "A resource such as an open file must be released. `defer fileClose(handle)` registers a void call now and runs it when the current block exits, including return or propagation with ?. Arguments are captured when registered. Multiple deferred calls run in reverse order. fsWrite creates or replaces a file and returns !bool; fsOpen returns !file; fsReadAll returns !string. ? propagates failures from a fallible function. OS file errors use errno and can be described by errorMessage. Cleanup cannot be guaranteed after forced process termination.",
+        "ru": "Ресурс, например открытый файл, нужно освободить. `defer fileClose(handle)` регистрирует вызов без результата сейчас, а выполняет при выходе из текущего блока, в том числе через return или ?. Аргументы фиксируются при регистрации. Несколько defer выполняются в обратном порядке. fsWrite создаёт или заменяет файл и возвращает !bool, fsOpen — !file, fsReadAll — !string. ? передаёт ошибки из функции с результатом. Файловые ошибки ОС используют errno, и их описывает errorMessage. При принудительном завершении процесса очистка не гарантируется."
+      },
+      "task": {
+        "en": "Complete saveAndCount to write exactly `hello` plus a newline to note.txt. Keep the deferred close immediately after opening. The program must print `saved bytes: 6` and then `finished`. The test also checks note.txt inside its isolated working directory.",
+        "ru": "Допишите saveAndCount: запишите в note.txt ровно `hello` и перевод строки. Сохраните defer закрытия сразу после открытия. Программа должна вывести `saved bytes: 6`, затем `finished`. Тест также проверяет note.txt внутри отдельного рабочего каталога."
+      },
+      "duration": 20,
+      "markdown": {
+        "en": "lessons/12-defer-resources.en.md",
+        "ru": "lessons/12-defer-resources.ru.md"
+      },
+      "example": "package main\nfunc main() {\n    var value i64 = 1\n    defer println(\"captured:\", value)\n    value = 2\n    println(\"current:\", value)\n}\n",
+      "starter": "package main\nfunc saveAndCount(path string) !i64 {\n    var written = fsWrite(path, \"hi\\n\")?\n    assert(written)\n    var handle = fsOpen(path, \"rb\")?\n    defer fileClose(handle)\n    var contents = fsReadAll(handle)?\n    return ok(len(contents))\n}\nfunc main() {\n    defer println(\"finished\")\n    match saveAndCount(\"note.txt\") {\n        ok(count) => { println(\"saved bytes:\", count) }\n        fail(code) => { println(\"file error:\", errorMessage(code)) }\n    }\n}\n",
+      "solution": "package main\nfunc saveAndCount(path string) !i64 {\n    var written = fsWrite(path, \"hello\\n\")?\n    assert(written)\n    var handle = fsOpen(path, \"rb\")?\n    defer fileClose(handle)\n    var contents = fsReadAll(handle)?\n    return ok(len(contents))\n}\nfunc main() {\n    defer println(\"finished\")\n    match saveAndCount(\"note.txt\") {\n        ok(count) => { println(\"saved bytes:\", count) }\n        fail(code) => { println(\"file error:\", errorMessage(code)) }\n    }\n}\n",
+      "files": {
+        "main.kr": "package main\nfunc saveAndCount(path string) !i64 {\n    var written = fsWrite(path, \"hi\\n\")?\n    assert(written)\n    var handle = fsOpen(path, \"rb\")?\n    defer fileClose(handle)\n    var contents = fsReadAll(handle)?\n    return ok(len(contents))\n}\nfunc main() {\n    defer println(\"finished\")\n    match saveAndCount(\"note.txt\") {\n        ok(count) => { println(\"saved bytes:\", count) }\n        fail(code) => { println(\"file error:\", errorMessage(code)) }\n    }\n}\n"
+      },
+      "entry": "main.kr",
+      "mode": "learn",
+      "hints": {
+        "en": [
+          "The cleanup and error propagation are already present. Change the bytes passed to fsWrite.",
+          "Five ASCII letters plus one newline occupy six bytes.",
+          "Use fsWrite(path, \"hello\\n\") and keep defer fileClose(handle)."
+        ],
+        "ru": [
+          "Очистка и передача ошибки уже есть. Измените байты, переданные в fsWrite.",
+          "Пять букв ASCII и перевод строки занимают шесть байтов.",
+          "Используйте fsWrite(path, \"hello\\n\") и сохраните defer fileClose(handle)."
+        ]
+      },
+      "walkthrough": {
+        "en": "The write result is propagated and then asserted. After opening, cleanup is registered before the read can fail. The read result is propagated; len counts six bytes. Returning closes the file before main prints the count. The defer in main prints finished last. File errors are OS errno values, unlike lesson 11 reader codes.",
+        "ru": "Результат записи передаётся через ? и затем проверяется assert. После открытия очистка регистрируется до возможной ошибки чтения. Результат чтения передаётся через ?, len считает шесть байтов. При возврате файл закрывается до вывода количества в main. defer в main выводит finished последним. Файловые ошибки — OS errno, в отличие от кодов считывателя в уроке 11."
+      },
+      "transfer": {
+        "en": "Go also has defer. Rust uses ownership and Drop, C++ uses RAII, and Python uses with/context managers. The shared goal is to tie cleanup to a well-defined scope rather than remembering every exit manually.",
+        "ru": "В Go тоже есть defer. Rust использует владение и Drop, C++ — RAII, Python — with и контекстные менеджеры. Общая цель — привязать очистку к определённой области, а не вручную помнить каждый выход."
+      },
+      "tests": [
+        {
+          "id": "file-and-output",
+          "name": {
+            "en": "Output and saved file",
+            "ru": "Вывод и сохранённый файл"
+          },
+          "stdin": "",
+          "stdout": "saved bytes: 6\nfinished\n",
+          "stderr": "",
+          "exitCode": 0,
+          "timeLimitMs": 2000,
+          "outputLimitBytes": 65536,
+          "files": [
+            {
+              "path": "note.txt",
+              "content": "hello\n"
+            }
+          ]
+        }
+      ],
+      "solutionMarkdown": {
+        "en": "lessons/12-defer-resources.solution.en.md",
+        "ru": "lessons/12-defer-resources.solution.ru.md"
+      }
+    }
+  ],
+  "roadmap": [
+    {
+      "id": "references",
+      "title": {
+        "en": "References and borrowing",
+        "ru": "Ссылки и заимствования"
+      },
+      "status": "planned",
+      "prerequisites": [
+        "data"
+      ],
+      "sourceReference": "vendor/kremen/docs/language.md"
+    },
+    {
+      "id": "pointers",
+      "title": {
+        "en": "Pointers and addresses",
+        "ru": "Указатели и адреса"
+      },
+      "status": "planned",
+      "prerequisites": [
+        "references"
+      ],
+      "sourceReference": "vendor/kremen/docs/safety.md"
+    },
+    {
+      "id": "unsafe",
+      "title": {
+        "en": "Explicit unsafe boundaries",
+        "ru": "Явные границы unsafe"
+      },
+      "status": "planned",
+      "prerequisites": [
+        "pointers"
+      ],
+      "sourceReference": "vendor/kremen/docs/safety.md"
+    },
+    {
+      "id": "slices",
+      "title": {
+        "en": "Slices and shared storage",
+        "ru": "Срезы и общая память"
+      },
+      "status": "planned",
+      "prerequisites": [
+        "references"
+      ],
+      "sourceReference": "vendor/kremen/docs/language.md"
+    },
+    {
+      "id": "arenas",
+      "title": {
+        "en": "Arenas and lifetimes",
+        "ru": "Арены и время жизни"
+      },
+      "status": "planned",
+      "prerequisites": [
+        "slices"
+      ],
+      "sourceReference": "vendor/kremen/docs/language.md"
+    },
+    {
+      "id": "filesystem",
+      "title": {
+        "en": "Filesystem operations",
+        "ru": "Файловая система"
+      },
+      "status": "planned",
+      "prerequisites": [
+        "systems"
+      ],
+      "sourceReference": "vendor/kremen/docs/language.md"
+    },
+    {
+      "id": "threads",
+      "title": {
+        "en": "Independent worker threads",
+        "ru": "Независимые рабочие потоки"
+      },
+      "status": "planned",
+      "prerequisites": [
+        "systems",
+        "reliable"
+      ],
+      "sourceReference": "vendor/kremen/docs/threads.md"
+    }
+  ]
+}

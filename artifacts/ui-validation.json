@@ -1,0 +1,17 @@
+{
+  "viewport": "1366x768",
+  "reducedMotion": true,
+  "courseCards": 6,
+  "monaco": true,
+  "editorInputAndAutosave": true,
+  "staleResultCleared": true,
+  "monacoRunShortcut": true,
+  "themeSwitch": true,
+  "courseNavigation": true,
+  "searchKeyboard": true,
+  "navigationSections": 6,
+  "languageSwitch": true,
+  "nativePreviewError": true,
+  "pageErrors": [],
+  "externalRequests": []
+}

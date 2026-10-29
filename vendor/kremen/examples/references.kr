@@ -1,0 +1,14 @@
+package main
+func main() {
+	var value i64 = 10
+	{
+		var reference &mut i64 = &mut value
+		*reference += 5
+		println("Through a mutable reference:", *reference)
+	}
+	{
+		var reference &i64 = &value
+		println("Through a shared reference:", *reference)
+	}
+	println("After the borrows end:", value)
+}
