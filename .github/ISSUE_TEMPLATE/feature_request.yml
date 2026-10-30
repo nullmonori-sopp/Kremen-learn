@@ -1,0 +1,27 @@
+name: Feature request / Предложение
+description: Suggest a practical improvement / Предложите улучшение
+body:
+  - type: markdown
+    attributes:
+      value: |
+        English and Russian are welcome. A concrete example helps explain the idea.
+        Можно писать по-русски или по-английски. Конкретный пример поможет понять идею.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What would this help with? / Какую проблему это решит?
+      description: Describe the learner's or developer's task and the current difficulty.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested behavior / Предлагаемое поведение
+      description: Give an example of how it would work in the app.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Alternatives and context / Альтернативы и контекст
+      description: Optional examples, sketches or related issues.

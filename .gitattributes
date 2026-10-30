@@ -1,0 +1,10 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff2 binary
+
+# Keep upstream compiler and bundled license texts out of application statistics.
+vendor/kremen/** linguist-vendored
+src-tauri/resources/toolchain/** linguist-vendored
+src-tauri/resources/legal/** linguist-generated

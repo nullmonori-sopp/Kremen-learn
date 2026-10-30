@@ -94,7 +94,6 @@ flows were checked; a comprehensive screen-reader/accessibility audit was not.
   expandable directory hierarchy.
 - Advanced topics are structured roadmap entries, not finished lessons.
   Completion suggestions are keywords, with no semantic language server.
-- Packages are not code-signed or published. The GitHub connection refused
-  `createRepository` with `Resource not accessible by integration`; no second
-  remote repository was created. The complete local Git repository and source
-  archive are available for publication with suitable permissions.
+- Packages are not code-signed. Publishing a repository or installer does not
+  extend the platform coverage recorded here. The workflow has not been verified
+  by a remote run in this report; see the publishing guide for release steps.

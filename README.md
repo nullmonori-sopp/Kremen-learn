@@ -1,22 +1,50 @@
 # Kremen Learn
 
-[Русский](README.ru.md) · [Architecture](docs/ARCHITECTURE.md) · [Compiler audit](docs/COMPILER-AUDIT.md)
+[Русский](README.ru.md) · [Getting started](#getting-started) · [Development](docs/DEVELOPMENT.md) · [Roadmap](ROADMAP.md)
 
-An open-source, offline desktop programming studio for Kremen. A course library,
-local editor, compiler, exercises and personal projects share one workspace.
-No account, server or subscription is required.
+Learn Kremen by writing real programs. Follow a short lesson, change the code,
+run it on your computer, and see what happens. When you want to try an idea of
+your own, open a project in the same editor.
 
-The first version targets **Linux x86-64**. Windows support is unfinished;
-there is no verified Windows installer. See [platform status](docs/PLATFORMS.md).
+Kremen Learn is a free, open-source desktop application. Lessons, the editor
+and the compiler work locally. There are no accounts, subscriptions or servers.
 
-![Kremen Learn](artifacts/desktop-home.png)
+![The course library in the running Kremen Learn desktop application](artifacts/desktop-home.png)
 
-## Install
+## What you can do
 
-The custom C++ installer is `artifacts/Kremen-Learn-0.1.0-linux-x86_64.run`.
-It embeds the desktop application, compiler, runtime, lessons and original art.
-Binary installers accompany the delivery and are not committed to Git; source
-checkouts create them with the build commands below.
+- Work through **12 beginner lessons**, from your first program to error
+  handling and resource cleanup. Each has an example, a task, tests, hints
+  and a solution explained in Russian and English.
+- Write `.kr` and `.krh` files in Monaco, use search and replace, format code
+  with Kremen, and jump from a compiler error to the relevant code.
+- Run actual `check`, build/run, `emit-c`, `fmt` and `explain` commands.
+  Work and Learn use the compiler's real `--mode=work|learn` flags.
+- Create and open local projects, use local imports, and export your work.
+  Progress and the active editor session are stored locally in SQLite.
+- Choose a dark or light theme, switch the interface language, adjust its
+  scale, use keyboard shortcuts, or reduce animation.
+
+The editor uses keyword suggestions; a semantic language server is not included.
+The file sidebar currently shows relative paths as a flat list.
+
+## Platform status
+
+Version **0.1.0** is an early, working Linux release.
+
+| Platform | Current state |
+| --- | --- |
+| Debian 13, x86-64 | Built and run; the custom `.run` installer was installed and tested. A `.deb` was built and inspected. |
+| Other Linux distributions | Not verified. Older glibc versions may require a rebuild. |
+| Windows | Native compiler integration, isolation and an `.exe` installer are unfinished. Optional WSL2/WSLg scripts have not been tested on Windows. |
+
+See [platform details](docs/PLATFORMS.md) before choosing a package.
+
+## Getting started
+
+The Linux packages are distributed separately from the source tree. The custom
+installer contains the application, Kremen, its runtime header, lessons and
+course artwork. If you have the `.run` package:
 
 ```sh
 chmod +x Kremen-Learn-0.1.0-linux-x86_64.run
@@ -24,75 +52,83 @@ chmod +x Kremen-Learn-0.1.0-linux-x86_64.run
 ./Kremen-Learn-0.1.0-linux-x86_64.run
 ```
 
-Read the [installer guide](installer/README.md) for prefix selection and removal.
-A Debian package is also built under `src-tauri/target/release/bundle/deb/`.
+Your system must already provide **WebKitGTK 4.1, GTK 3, GCC, libc development
+headers, pthread and Bubblewrap with working user namespaces**. The installer
+checks dependencies; it does not download them. Once these packages are
+available, installation and learning can happen offline. See the
+[installation guide](installer/README.md) for custom locations and removal.
 
-The operating system must provide **WebKitGTK 4.1, GTK 3, GCC with libc development
-headers and pthread, and Bubblewrap with usable user namespaces**. Installation
-can be offline once these system packages are available. The installer checks
-availability and never downloads or silently installs system dependencies.
-The application itself makes no network requests.
+To try the first lesson:
 
-## What is included
+1. Open Settings and check that the toolchain is ready.
+2. Choose a course and open its first lesson.
+3. Edit the code and press **Ctrl+Enter** to run it.
+4. Use **Check solution**. Passing the actual tests saves completion.
 
-- Dark and light themes, Russian and English interface, keyboard focus, reduced
-  motion and scalable interface; animated library, course pages and lesson dock.
-- Twelve introductory lessons with separate bilingual Markdown and versioned
-  metadata, runnable examples, starter code, exact tests and progressive hints.
-- Local Monaco Editor, `.kr` / `.krh` files, file tabs, project tree, search and
-  replace, real compiler formatting, JSON diagnostics and error explanations.
-- Real `check`, build/run, `emit-c`, `fmt`, `explain` and `--mode=work|learn`.
-- SQLite progress and session storage, local project files, backup/import/export.
-- Isolated temporary runs, output/time/resource limits and process-tree stopping.
+For your own code, choose **My projects → Open by path** and enter the absolute
+path of a local Kremen project. A system folder chooser is also available.
+**Ctrl+S** saves project files. Save those edits before switching to a lesson;
+the active editor session and files on disk are separate.
 
-The compiler is pinned to Kremen **0.4.6**, commit
-`671140cd1ef4ea453a07047df07c945efa7184e2`. Its original MIT source is included
-in `vendor/kremen/`; no moving branch is used to build the bundled compiler.
-Kremen generates C and requires an external C backend. Semantic completion is
-not claimed; editor suggestions are keywords.
+![A real lesson run with the bundled Kremen compiler](artifacts/desktop-run.png)
 
-## Development and build
+## Build it yourself
 
-See [development instructions](docs/DEVELOPMENT.md). The interface uses Next.js
-static export, React, TypeScript and Monaco; the desktop host and task engine
-use Rust/Tauri 2; the custom installer is C++; build helpers use JavaScript,
-Python and shell. The original Kremen compiler is C11.
+The application uses Rust and Tauri 2, a statically exported Next.js interface
+with React and TypeScript, and a C++ installer. The original Kremen compiler
+is C11. The installed app needs no Node.js or Next.js server.
+
+Install the system dependencies and toolchains from the
+[development guide](docs/DEVELOPMENT.md), then run:
 
 ```sh
 npm ci
 sh scripts/build-toolchain.sh
-python3 scripts/verify-lessons.py
-npm run build
-cargo test --manifest-path src-tauri/Cargo.toml --lib -- --include-ignored --test-threads=1
+npm run verify:lessons
 npm run desktop
+```
+
+Create the Linux packages with:
+
+```sh
 npm run package -- --bundles deb
 bash scripts/build-installer.sh
 ```
 
-Opening the browser preview lets you inspect the interface. Compilation and
-native files require the desktop host; preview never fabricates a successful
-run, test or save.
+The browser preview is useful for interface work. Compilation and native file
+operations require the desktop window; the preview reports that requirement.
 
-## First session
+## The compiler and the checks
 
-Open Settings and check that the real toolchain probe is ready. Choose a course,
-open the first lesson, edit the code, use Ctrl+Enter to run, then Check solution.
-The exercise records completion only after its actual tests pass.
+Kremen is pinned to **0.4.6**, commit
+[`671140c`](https://github.com/nullmonori-sopp/Kremen/commit/671140cd1ef4ea453a07047df07c945efa7184e2).
+Its source is included in `vendor/kremen/`; builds do not follow a moving branch.
+Kremen generates C and uses the system C compiler as its backend.
 
-For independent development, choose My projects → Open by path and enter an
-absolute local directory with a `.kr` entry file. The system folder chooser is
-also available. Recent projects reload from disk. Ctrl+S saves disk files;
-the active editor session is saved separately. Save project edits before
-switching learning contexts.
+The recorded checks include 120 upstream compiler checks, 13 native application
+tests, 16 lesson solution cases and eight installer scenarios. The
+[verification report](docs/VERIFICATION.md) contains the evidence, screenshots,
+environment details and remaining gaps. A workflow is included; these local
+results do not claim a successful GitHub Actions run.
 
-## Trust and limits
+User programs run in temporary directories through Linux Bubblewrap namespaces,
+with process stopping and resource limits. These limits apply per process;
+there is no aggregate memory or disk quota. Read the
+[execution model](docs/EXECUTION.md) before running unfamiliar code.
 
-Read [the execution model](docs/EXECUTION.md) before running unfamiliar code.
-Resource limits alone are not an access sandbox. Linux execution requires
-Bubblewrap namespaces; unavailable isolation is reported as an error. The
-application is an educational tool, not a security boundary against kernel
-exploits. Tests stored in a local open-source application are inspectable.
+## Help shape the next version
 
-[Verification and known limits](docs/VERIFICATION.md) records the actual checks
-and exact platform coverage. This is a first release, not a claim of complete
-cross-platform support. MIT license; [third-party notices](THIRD-PARTY-NOTICES.md).
+Windows support, more complete project sessions and the next set of lessons
+are on the [roadmap](ROADMAP.md). Bug reports, clearer explanations,
+translations and code fixes are welcome. You can write in Russian or English.
+The [contribution guide](CONTRIBUTING.md) explains where to start.
+
+More about the project:
+[architecture](docs/ARCHITECTURE.md) ·
+[lesson format](docs/LESSON-FORMAT.md) ·
+[compiler audit](docs/COMPILER-AUDIT.md) ·
+[changelog](CHANGELOG.md).
+
+Kremen Learn is released under the [MIT license](LICENSE). The compiler retains
+its own MIT notice; other dependencies are listed in
+[third-party notices](THIRD-PARTY-NOTICES.md).

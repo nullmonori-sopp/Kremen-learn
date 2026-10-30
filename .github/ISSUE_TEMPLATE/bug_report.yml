@@ -1,0 +1,45 @@
+name: Bug report / Ошибка
+description: Describe a reproducible problem / Опишите воспроизводимую проблему
+body:
+  - type: markdown
+    attributes:
+      value: |
+        English and Russian are welcome. Please check existing issues and platform limitations first.
+        Можно писать по-русски или по-английски. Проверьте существующие issues и ограничения платформ.
+  - type: input
+    id: version
+    attributes:
+      label: App version or commit / Версия приложения или коммит
+      placeholder: 0.1.0, source build at …
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Platform / Платформа
+      description: OS version, architecture, desktop session; specify WSLg if applicable.
+      placeholder: Debian 13 x86-64, GNOME / Wayland
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce / Как воспроизвести
+      description: Include a minimal code example or the lesson name when relevant.
+      placeholder: |
+        1. Open …
+        2. Run …
+        3. Observe …
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and actual result / Ожидаемый и фактический результат
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Toolchain, logs and screenshots / Тулчейн, логи и скриншоты
+      description: Include Settings toolchain status and the exact error if relevant. Remove credentials and private project data.
